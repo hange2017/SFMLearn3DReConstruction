@@ -46,11 +46,11 @@ ImageBasedModellingEdu2.0 是用于深蓝学院基于图像的三维模型重建
 
    ./build/examples/task3/task3-1_incremental_sfm ./examples/data/sequence ./examples/data/sequence_scene
 
- 
-=======
+
+//我自己的一些作业情况
 # SFMLearn3DReConstruction
 SFM  3DReconstrction  
 
-this project is a learning proj for the SFM course 深蓝学院
+this project is a learning proj for the SFM course 深蓝
 platform:Ubuntu20.04 
->>>>>>> 2dad88a7ac5ba218f3b3e497717d6240da0e6fdb
+
