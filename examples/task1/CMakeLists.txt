@@ -10,6 +10,11 @@ set(MATH_BASIC_FILE
 add_executable(task1_test_math_basic ${MATH_BASIC_FILE} )
 target_link_libraries(task1_test_math_basic  util core )
 
+#home work task1-2_test_camera
+set(task1_2 task1-2_test_camera.cc)
+add_executable(task1_2 ${task1_2})
+target_link_libraries(task1_2 util core)
+
 
 # test camera model
 set(CAMERA_MODEL
@@ -48,3 +53,7 @@ set(POSE_FROM_FUNDAMENTAL
         )
 add_executable(task6_test_pose_from_fundamental ${POSE_FROM_FUNDAMENTAL} )
 target_link_libraries(task6_test_pose_from_fundamental sfm util core features )
+
+set(TEST_FEATURES task1-7_test_features.cc )
+add_executable(task7_test_features ${TEST_FEATURES})
+target_link_libraries(task7_test_features sfm util core features)

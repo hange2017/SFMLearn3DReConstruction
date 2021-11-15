@@ -164,12 +164,18 @@ Matching::oneway_match (Options const& options,
                /*                  */
                /*    此处添加代码    */
                /*                  */
+        float dist_1st= nn_result.dist_1st_best;  //最近邻距离
+        float dist_2st= nn_result.dist_2nd_best;  //次近邻距离
+        if(dist_1st/dist_2st > MATH_POW2(options.lowe_ratio_threshold)){ //如果两个距离相差不大则认为错误匹配
+            continue;
+        }
         /*******************************10696_10015b911522757f6?bizid=10696&txSecret=63384d4bd569e29729b6995dd8a9eefb&txTime=5B93EFB6**********************************/
 
+        /*//注释原本已有的最近邻次近邻比筛选代码
         if (static_cast<float>(nn_result.dist_1st_best)
             / static_cast<float>(nn_result.dist_2nd_best)
             > MATH_POW2(options.lowe_ratio_threshold))
-            continue;
+            continue;*/
         // 匹配成功，feature set1 中第i个特征值对应feature set2中的第index_1st_best个特征点
         result->at(i) = nn_result.index_1st_best;
     }

@@ -13,6 +13,7 @@ set(HEADERS
         matching.h
         exhaustive_matching.h
         cascade_hashing.h
+        visualizer.h
         )
 
 set(SOURCE_FILES
@@ -22,7 +23,7 @@ set(SOURCE_FILES
         matching.cc
         exhaustive_matching.cc
         cascade_hashing.cc
-
+        visualizer.cc
         )
 add_library(${PROJECT_NAME} ${HEADERS} ${SOURCE_FILES})
 target_link_libraries(${PROJECT_NAME} util core)

@@ -88,7 +88,7 @@ main (int argc, char** argv)
         sift_drawing, features::Visualizer::RADIUS_BOX_ORIENTATION);
 
     /* 保存图像文件名 */
-    std::string sift_out_fname = "./tmp/" + util::fs::replace_extension
+    std::string sift_out_fname = "/home/hange/Learn/chapter1/ImageBasedModellingEdu/examples/task1/tmp/" + util::fs::replace_extension
         (util::fs::basename(image_filename), "sift.png");
     std::cout << "保存图像: " << sift_out_fname << std::endl;
     core::image::save_file(sift_image, sift_out_fname);

@@ -22,6 +22,8 @@
 
 #include "sfm/triangulate.h"
 
+#include <assert.h>
+
 #define MAX_PIXELS 1000000
 
 

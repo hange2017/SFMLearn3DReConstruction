@@ -18,6 +18,7 @@
 #include "sfm/fundamental.h"
 #include "sfm/correspondence.h"
 #include "math/matrix_svd.h"
+#include <assert.h>
 
 typedef math::Matrix<double, 3, 3> FundamentalMatrix;
 
@@ -40,7 +41,10 @@ int  calc_ransac_iterations (double p,
 
     /** TODO HERE
      * Coding here**/
-    return 0;
+    //最少一次成功 z=1-(1-p^K)^M ...1-全部失败的概率
+    int total_ransac_iter=0;
+    total_ransac_iter = log(1.0-z)/log(1.0-pow(p,K));
+    return static_cast<int>(floor(total_ransac_iter) );
 
 
     /** Reference
@@ -175,6 +179,13 @@ std::vector<int> find_inliers(sfm::Correspondences2D2D const & matches
      *
      * Coding here **/
 
+    //calc_sampson_distance()计算每一对匹配点对相对当前估计的F矩阵误差，看是否匹配对是内点对
+    for(int i=0;i<matches.size();i++){
+        if(calc_sampson_distance(F,matches[i])<squared_thresh){
+            inliers.push_back(i);
+        }
+    }
+
     /** Reference
     for(int i=0; i< matches.size(); i++){
         double error = calc_sampson_distance(F, matches[i]);
@@ -192,7 +203,7 @@ int main(int argc, char *argv[]){
 
     /** 加载归一化后的匹配对 */
     sfm::Correspondences2D2D corr_all;
-    std::ifstream in("./examples/task1/correspondences.txt");
+    std::ifstream in("/home/hange/Learn/chapter1/ImageBasedModellingEdu/examples/task1/correspondences.txt");
     assert(in.is_open());
 
     std::string line, word;
@@ -231,12 +242,17 @@ int main(int argc, char *argv[]){
               << " iterations, threshold " << inlier_thresh
               << "..." << std::endl;
     for(int i=0; i<n_iterations; i++){
-
         /* 1.0 随机找到8对不重复的匹配点 */
         std::set<int> indices;
         while(indices.size()<8){
-            indices.insert(util::system::rand_int() % corr_all.size());
+            int ran_num = util::system::rand_int();
+            int total_size = corr_all.size();
+            //std::cout<<"ran_num:"<<ran_num<<"  total_size:"<<total_size<<std::endl;
+            int insert_num=ran_num%total_size;
+            //std::cout<<"insert_num:"<<insert_num<<std::endl;
+            indices.insert( insert_num);
         }
+        
 
         math::Matrix<double, 3, 8> pset1, pset2;
         std::set<int>::const_iterator iter = indices.cbegin();
@@ -255,9 +271,10 @@ int main(int argc, char *argv[]){
         /*2.0 8点法估计相机基础矩阵*/
         FundamentalMatrix F;
         calc_fundamental_8_point(pset1, pset2,F);
-
+        
         /*3.0 统计所有的内点个数*/
         std::vector<int> inlier_indices = find_inliers(corr_all, F, inlier_thresh);
+        
 
         if(inlier_indices.size()> best_inliers.size()){
 
