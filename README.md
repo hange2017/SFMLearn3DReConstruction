@@ -53,4 +53,7 @@ SFM  3DReconstrction
 
 this project is a learning proj for the SFM course 深蓝
 platform:Ubuntu20.04 
+https://github.com/hange2017/BasicAlgorithmTest.git
+
+第二章完成
 
