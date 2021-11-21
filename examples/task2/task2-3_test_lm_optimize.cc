@@ -864,7 +864,7 @@ int main(int argc, char* argv[])
 {
 
     /* 加载数据 */
-    load_data("./examples/task2/test_ba.txt",cameras, points, observations);
+    load_data("/home/hange/Learn/chapter1/ImageBasedModellingEdu/examples/task2/test_ba.txt",cameras, points, observations);
 
     lm_optimization(&cameras, &points, &observations);
 

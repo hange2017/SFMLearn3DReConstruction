@@ -22,7 +22,7 @@ int main(int argc, char* argv[]){
 
     // 从文件中读取3D-2D对应点，2D点已经进行归一化
     sfm::Correspondences2D3D corrs;
-    std::ifstream fin("./examples/task2/correspondence2D3D.txt");
+    std::ifstream fin("/home/hange/Learn/chapter1/ImageBasedModellingEdu/examples/task2/correspondence2D3D.txt");
     assert(fin.is_open());
     std::string line;
     int line_id = 0;

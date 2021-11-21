@@ -249,7 +249,7 @@ main (int argc, char *argv[])
 //        std::cout<<pts_3d[i][0]<<" "<<pts_3d[i][1]<<" "<<pts_3d[i][2]<<std::endl;
 //    }
 
-    std::ofstream out("./examples/task2/test_ba.txt");
+    std::ofstream out("/home/hange/Learn/chapter1/ImageBasedModellingEdu/examples/task2/test_ba.txt");
     assert(out.is_open());
 
     /*捆绑调整*/
